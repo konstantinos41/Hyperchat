@@ -107,7 +107,7 @@ public class TabbedActivity extends AppCompatActivity {
                 case 0:
                     return PlaceholderFragment.newInstance(position + 1);
                 case 1:
-                    return PlaceholderFragment.newInstance(position + 1);
+                    return ProfileFragment.newInstance(position + 1);
                 case 2:
                     return PlaceholderFragment.newInstance(position + 1);
             }
@@ -124,11 +124,11 @@ public class TabbedActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "FRIENDS";
                 case 1:
-                    return "SECTION 2";
+                    return "MY PROFILE";
                 case 2:
-                    return "SECTION 3";
+                    return "TOPICS";
             }
             return null;
         }

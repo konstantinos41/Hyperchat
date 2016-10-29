@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.konstantinos.hyperplane.TabbedActivity$ProfileFragment">
+
+
+
+    <com.facebook.login.widget.ProfilePictureView
+        android:id="@+id/ProfilePicture"
+        android:layout_alignParentTop="true"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_toRightOf="@+id/section_label"
+        />
+
+    <Button
+        android:text="new topic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button5"
+        android:layout_below="@+id/editText2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="33dp"
+        android:id="@+id/editText2"
+        android:hint="Name your new topic"
+        android:layout_below="@+id/ProfilePicture"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="A topic is a group chat between you and all your friends. You can give it a specific subject or not. It's your choice."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/button5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewName"
+        android:text="John Doe"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:textSize="18sp"
+        android:layout_alignBottom="@+id/ProfilePicture"
+        android:layout_toRightOf="@+id/ProfilePicture"
+        android:layout_toEndOf="@+id/ProfilePicture"
+        android:layout_marginBottom="11dp" />
+
+</RelativeLayout>

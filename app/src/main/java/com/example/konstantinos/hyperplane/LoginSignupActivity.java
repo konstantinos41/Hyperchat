@@ -31,6 +31,7 @@ import java.util.Arrays;
 
 public class LoginSignupActivity extends AppCompatActivity
 {
+    public static String Name, Email, UserID;
     private CallbackManager callbackManager;
     private TextView info;
     private LoginButton loginButton;
@@ -48,7 +49,6 @@ public class LoginSignupActivity extends AppCompatActivity
         setContentView(R.layout.activity_login_signup);
         info = (TextView)findViewById(R.id.info);
 
-        startActivity(new Intent(LoginSignupActivity.this, TabbedActivity.class));
 
 
 
@@ -87,8 +87,13 @@ public class LoginSignupActivity extends AppCompatActivity
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
+                                Name = nombre;
+                                Email = email;
+                                UserID = id;
 
                                 loginSignupToApplozic(nombre,email,id);
+                                startActivity(new Intent(LoginSignupActivity.this, TabbedActivity.class));
+
                             }
                         });
                 Bundle parameters = new Bundle();

@@ -48,6 +48,8 @@ public class LoginSignupActivity extends AppCompatActivity
         setContentView(R.layout.activity_login_signup);
         info = (TextView)findViewById(R.id.info);
 
+        startActivity(new Intent(LoginSignupActivity.this, TabbedActivity.class));
+
 
 
         loginButton = (LoginButton)findViewById(R.id.login_button);

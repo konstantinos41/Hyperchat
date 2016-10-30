@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,13 +56,12 @@ public class ProfileFragment extends Fragment {
         TextView textViewName = (TextView) rootView.findViewById(R.id.textViewName);
         textViewName.setText(LoginSignupActivity.Name);
 
-//        ImageView imageViewProfile = (ImageView) rootView.findViewById(R.id.imageViewProfile);
-//        Bitmap newBitmap = getFacebookProfilePicture(LoginSignupActivity.ID);
-//        imageViewProfile.setImageBitmap(newBitmap);
 
         ProfilePictureView profilePictureView = (ProfilePictureView) rootView.findViewById(R.id.ProfilePicture);
-
         profilePictureView.setProfileId(LoginSignupActivity.UserID);
+
+        EditText editTextNewTopic = (EditText) rootView.findViewById(R.id.editTextNewTopic);
+        editTextNewTopic.requestFocus();
 
 
         return rootView;

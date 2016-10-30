@@ -162,6 +162,19 @@
             android:name="com.applozic.mobicomkit.api.conversation.ConversationReadService"
             android:exported="false" />
 
+        <service android:name="com.example.konstantinos.hyperplane.pushnotification.FcmListenerService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service android:name="com.example.konstantinos.hyperplane.pushnotification.FcmInstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
         <receiver android:name="com.applozic.mobicomkit.broadcast.TimeChangeBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.TIME_SET" />

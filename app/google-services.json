@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "413724871761",
+    "firebase_url": "https://hyperplane-60fef.firebaseio.com",
+    "project_id": "hyperplane-60fef",
+    "storage_bucket": "hyperplane-60fef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413724871761:android:a78bc8d7d1009d60",
+        "android_client_info": {
+          "package_name": "com.example.konstantinos.hyperplane"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "413724871761-s531bjqaps362av6347dok6n3q8pudbk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyBs9liJlRnrB2JXVgrhLWIkVjHYoNRbk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

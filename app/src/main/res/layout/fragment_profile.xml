@@ -23,8 +23,8 @@
         android:text="new topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button5"
-        android:layout_below="@+id/editText2"
+        android:id="@+id/buttonNewTopic"
+        android:layout_below="@+id/editTextNewTopic"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -34,7 +34,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:layout_marginTop="33dp"
-        android:id="@+id/editText2"
+        android:id="@+id/editTextNewTopic"
         android:hint="Name your new topic"
         android:layout_below="@+id/ProfilePicture"
         android:layout_alignParentLeft="true"
@@ -45,8 +45,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/button5"
+        android:id="@+id/textViewTopicInfo"
+        android:layout_below="@+id/buttonNewTopic"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

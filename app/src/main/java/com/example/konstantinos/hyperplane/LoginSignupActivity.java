@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.applozic.mobicomkit.Applozic;
 import com.applozic.mobicomkit.api.account.register.RegistrationResponse;
+import com.applozic.mobicomkit.api.account.user.PushNotificationTask;
 import com.applozic.mobicomkit.api.account.user.User;
 import com.applozic.mobicomkit.api.account.user.UserLoginTask;
 import com.facebook.CallbackManager;
@@ -129,8 +131,23 @@ public class LoginSignupActivity extends AppCompatActivity
         UserLoginTask.TaskListener listener = new UserLoginTask.TaskListener() {
 
             @Override
-            public void onSuccess(RegistrationResponse registrationResponse, Context context) {
+            public void onSuccess(RegistrationResponse registrationResponse, Context context)
+            {
                 //After successful registration with Applozic server the callback will come here
+                PushNotificationTask pushNotificationTask = null;
+                PushNotificationTask.TaskListener listener=  new PushNotificationTask.TaskListener() {
+                    @Override
+                    public void onSuccess(RegistrationResponse registrationResponse) {
+
+                    }
+                    @Override
+                    public void onFailure(RegistrationResponse registrationResponse, Exception exception) {
+
+                    }
+
+                };
+                pushNotificationTask = new PushNotificationTask(Applozic.getInstance(context).getDeviceRegistrationId(),listener,context);
+                pushNotificationTask.execute((Void)null);
             }
 
             @Override

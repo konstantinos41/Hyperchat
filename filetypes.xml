@@ -1,0 +1,8 @@
+<application>
+  <component name="FileTypeManager" version="16">
+    <extensionMap>
+      <mapping pattern="logo" type="Native" />
+      <mapping pattern="" type="PLAIN_TEXT" />
+    </extensionMap>
+  </component>
+</application>

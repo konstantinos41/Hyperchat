@@ -47,6 +47,7 @@
     <option name="SEND_ENVIRONMENT_VARIABLES_TO_SERVER" value="false" />
     <option name="SHOW_PATH" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="DebuggerSettings">
     <option name="TRACING_FILTERS_ENABLED" value="true" />
     <option name="FORCE_CLASSIC_VM" value="true" />
@@ -111,4 +112,6 @@
       <option name="ENABLED" value="true" />
     </filter>
   </component>
+=======
+>>>>>>> 20bfdb75c70c074614135ba5602a0e674491481e
 </application>

@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.applozic.mobicomkit.uiwidgets.conversation.activity.ConversationActivity;
@@ -70,6 +71,12 @@ public class TabbedActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Set the Profile Tab as start tab
+        mViewPager.setCurrentItem(1);
+
+        // Don't let keyboard show up automatically
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
     }
 

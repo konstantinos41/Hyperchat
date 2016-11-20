@@ -81,10 +81,12 @@ public class FriendsFragment extends Fragment {
                                 JSONArray friendslist = response.getJSONObject().getJSONArray("data");
 
                                 for (int l = 0; l < friendslist.length(); l++) {
-                                    name.add(friendslist.getJSONObject(l).getString("name"));
-                                    imageId.add(friendslist.getJSONObject(l).getString("id"));
+                                    name.add(0, friendslist.getJSONObject(l).getString("name"));
+                                    imageId.add(0, friendslist.getJSONObject(l).getString("id"));
                                 }
 
+                                name.add("Invite more Friends!");
+                                imageId.add("");
                                 adapter = new CustomList(getActivity(), name, imageId);
                                 mainListView.setAdapter(adapter);
                             } catch (Exception ex) {

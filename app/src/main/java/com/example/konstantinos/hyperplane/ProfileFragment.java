@@ -37,11 +37,9 @@ public class ProfileFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static ProfileFragment newInstance(int sectionNumber) {
-        sectionNumber = 12;
+    public static ProfileFragment newInstance() {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }

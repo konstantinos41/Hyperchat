@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.applozic.mobicomkit.uiwidgets.conversation.activity.ConversationActivity;
 import com.applozic.mobicomkit.uiwidgets.conversation.fragment.ConversationFragment;
 import com.applozic.mobicomkit.uiwidgets.conversation.fragment.MobiComQuickConversationFragment;
+import com.google.android.gms.location.places.Place;
 
 public class TabbedActivity extends AppCompatActivity {
 
@@ -74,6 +75,9 @@ public class TabbedActivity extends AppCompatActivity {
 
         // Set the Profile Tab as start tab
         mViewPager.setCurrentItem(1);
+        // Set number of pages that won't be destroyed when off screen
+        mViewPager.setOffscreenPageLimit(2);
+
 
         // Don't let keyboard show up automatically
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -121,11 +125,11 @@ public class TabbedActivity extends AppCompatActivity {
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 0:
-                    return FriendsFragment.newInstance(position + 1);
+                    return FriendsFragment.newInstance();
                 case 1:
-                    return ProfileFragment.newInstance(position + 1);
+                    return ProfileFragment.newInstance();
                 case 2:
-                    return PlaceholderFragment.newInstance(position + 1);
+                    return PlaceholderFragment.newInstance();
             }
             return  null;
         }

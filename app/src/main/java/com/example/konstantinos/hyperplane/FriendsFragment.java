@@ -41,7 +41,9 @@ public class FriendsFragment extends Fragment {
     private List<String> name = new ArrayList<String>();
     private List<String> imageId = new ArrayList<String>();
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
+    private View rootView;
+    private CustomList adapter;
+
 
     public FriendsFragment() {
     }
@@ -50,21 +52,21 @@ public class FriendsFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static FriendsFragment newInstance(int sectionNumber)
+    public static FriendsFragment newInstance()
     {
         FriendsFragment fragment = new FriendsFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_friends, container, false);
-        mainListView = (ListView) rootView.findViewById( R.id.friends_list );
+        rootView = inflater.inflate(R.layout.fragment_friends, container, false);
 
+        mainListView = (ListView) rootView.findViewById( R.id.friends_list );
 
         // Check if friends list is empty and if it is fill it with friends
         // There seems to be a problem when a lot of friends are on the list, it takes some time to load
@@ -82,18 +84,17 @@ public class FriendsFragment extends Fragment {
                                     name.add(friendslist.getJSONObject(l).getString("name"));
                                     imageId.add(friendslist.getJSONObject(l).getString("id"));
                                 }
+
+                                adapter = new CustomList(getActivity(), name, imageId);
+                                mainListView.setAdapter(adapter);
                             } catch (Exception ex) {
 
                             }
                         }
                     }
+
             ).executeAsync();
         }
-
-
-         CustomList adapter = new CustomList(getActivity(), name, imageId);
-         // Set the ArrayAdapter as the ListView's adapter.
-         mainListView.setAdapter(adapter);
 
 
 

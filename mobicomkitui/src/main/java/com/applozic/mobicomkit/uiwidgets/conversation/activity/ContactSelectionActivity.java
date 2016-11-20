@@ -43,7 +43,7 @@ public class ContactSelectionActivity extends AppCompatActivity implements Searc
     ContactDatabase contactDatabase;
     public static boolean isSearching = false;
     ContactSelectionFragment contactSelectionFragment;
-    private AppContactService contactService;
+        private AppContactService contactService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

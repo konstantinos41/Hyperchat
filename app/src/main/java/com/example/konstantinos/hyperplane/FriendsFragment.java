@@ -42,8 +42,8 @@ public class FriendsFragment extends Fragment {
     private ListView mainListView ;
     private ArrayAdapter<String> listAdapter ;
 
-    private List<String> name = new ArrayList<String>();
-    private List<String> imageId = new ArrayList<String>();
+    public static List<String> names = new ArrayList<String>();
+    public static List<String> ids = new ArrayList<String>();
 
     private View rootView;
     private CustomList adapter;
@@ -84,13 +84,13 @@ public class FriendsFragment extends Fragment {
                                 JSONArray friendslist = response.getJSONObject().getJSONArray("data");
 
                                 for (int l = 0; l < friendslist.length(); l++) {
-                                    name.add(0, friendslist.getJSONObject(l).getString("name"));
-                                    imageId.add(0, friendslist.getJSONObject(l).getString("id"));
+                                    names.add(0, friendslist.getJSONObject(l).getString("name"));
+                                    ids.add(0, friendslist.getJSONObject(l).getString("id"));
                                 }
 
-                                name.add("Invite more Friends!");
-                                imageId.add("");
-                                adapter = new CustomList(getActivity(), name, imageId);
+                                names.add("Invite more Friends!");
+                                ids.add("");
+                                adapter = new CustomList(getActivity(), names, ids);
                                 mainListView.setAdapter(adapter);
                             } catch (Exception ex) {
 

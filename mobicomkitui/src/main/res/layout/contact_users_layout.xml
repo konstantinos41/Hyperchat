@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="?android:attr/listPreferredItemHeight">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/profile_image_relative_layout"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/alphabeticImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/mobiframework_circular_text_view"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:visibility="gone" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/contactImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@+id/alphabeticImage"
+            android:src="@drawable/applozic_ic_contact_picture_holo_light"
+            android:layout_gravity="center"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/lastSeenAtTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/displayName"
+        android:layout_toRightOf="@id/profile_image_relative_layout"
+        android:ellipsize="marquee"
+        android:textSize="14sp"
+        android:paddingLeft="@dimen/listview_item_padding"
+        android:paddingRight="@dimen/listview_item_padding"
+        android:singleLine="true"
+        android:textColor="#757575" />
+
+    <!-- Use standard android.R class text1 id instead of app specific id. This is just useful for
+         consistency. This view also sets layout_alignWithParentIfMissing=true which lets the view
+         align with the parent view if the text2 view is not part of the view hierarchy (which is
+         its initial state). -->
+    <TextView
+        android:id="@+id/displayName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="6dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/profile_image_relative_layout"
+        android:ellipsize="marquee"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/listview_item_padding"
+        android:paddingRight="@dimen/listview_item_padding"
+        android:singleLine="true"
+        android:textSize="15sp"
+        android:textColor="#616161" />
+
+
+    <!--Originally, @string/admin_text at android:text="Group Admin"-->
+    <TextView
+        android:id="@+id/adminTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginRight="10dp"
+        android:singleLine="true"
+        android:visibility="gone"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_alignBottom="@+id/displayName"
+        android:layout_alignParentRight="true"
+        android:text="@string/admin_text"
+        android:background="@drawable/admin_text"
+        android:textSize="12sp"
+        android:padding="2dp"
+        android:textColor="@color/applozic_theme_color_primary"
+        />
+</RelativeLayout>

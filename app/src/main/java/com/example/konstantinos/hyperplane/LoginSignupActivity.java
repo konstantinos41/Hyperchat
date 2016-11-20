@@ -42,6 +42,8 @@ public class LoginSignupActivity extends AppCompatActivity
     private LoginButton loginButton;
     public static AccessToken token;
 
+    public static Context applozicContext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -157,6 +159,8 @@ public class LoginSignupActivity extends AppCompatActivity
                 };
                 pushNotificationTask = new PushNotificationTask(Applozic.getInstance(context).getDeviceRegistrationId(),listener,context);
                 pushNotificationTask.execute((Void)null);
+
+                applozicContext = context;
             }
 
             @Override

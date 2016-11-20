@@ -44,7 +44,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services-appindexing:9.0.2'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
-    compile 'com.applozic.communication.uiwidget:mobicomkitui:4.63'
+
+    compile project(':mobicomkitui')
+//    compile 'com.applozic.communication.uiwidget:mobicomkitui:4.63'
 
 }
 

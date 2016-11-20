@@ -68,10 +68,8 @@ public class FriendsFragment extends Fragment {
 
         mainListView = (ListView) rootView.findViewById( R.id.friends_list );
 
-        // Check if friends list is empty and if it is fill it with friends
         // There seems to be a problem when a lot of friends are on the list, it takes some time to load
         // it might be because in simplerow.xml ProfilePicture control is used and not the simple image one.
-        if(name.isEmpty()) {
 
             new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/friends", null, HttpMethod.GET,
                     new GraphRequest.Callback() {
@@ -94,7 +92,6 @@ public class FriendsFragment extends Fragment {
                     }
 
             ).executeAsync();
-        }
 
 
 

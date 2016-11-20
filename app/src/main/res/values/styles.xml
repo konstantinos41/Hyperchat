@@ -29,4 +29,18 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="ApplozicTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!--To change the toolbar color change the colorPrimary  -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+
+        <!-- To change the status bar  color change the color of colorPrimaryDark -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <!-- colorAccent is used as the default value for colorControlActivated which is used to tint widgets -->
+        <item name="colorAccent">@color/applozic_theme_color_primary</item>
+
+        <item name="windowActionModeOverlay">true</item>
+    </style>
+
 </resources>

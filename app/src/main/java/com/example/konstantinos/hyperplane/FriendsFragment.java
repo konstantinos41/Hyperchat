@@ -12,15 +12,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphRequestAsyncTask;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
+import com.facebook.share.model.AppInviteContent;
+import com.facebook.share.widget.AppInviteDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,6 +71,7 @@ public class FriendsFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_friends, container, false);
 
         mainListView = (ListView) rootView.findViewById( R.id.friends_list );
+        mainListView.setClickable(true);
 
         // There seems to be a problem when a lot of friends are on the list, it takes some time to load
         // it might be because in simplerow.xml ProfilePicture control is used and not the simple image one.
@@ -79,10 +84,12 @@ public class FriendsFragment extends Fragment {
                                 JSONArray friendslist = response.getJSONObject().getJSONArray("data");
 
                                 for (int l = 0; l < friendslist.length(); l++) {
-                                    name.add(friendslist.getJSONObject(l).getString("name"));
-                                    imageId.add(friendslist.getJSONObject(l).getString("id"));
+                                    name.add(0, friendslist.getJSONObject(l).getString("name"));
+                                    imageId.add(0, friendslist.getJSONObject(l).getString("id"));
                                 }
 
+                                name.add("Invite more Friends!");
+                                imageId.add("");
                                 adapter = new CustomList(getActivity(), name, imageId);
                                 mainListView.setAdapter(adapter);
                             } catch (Exception ex) {
@@ -94,7 +101,39 @@ public class FriendsFragment extends Fragment {
             ).executeAsync();
 
 
+        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                Object obj = mainListView.getItemAtPosition(position);
+
+                //check if the invite button is clicked
+                if (obj.equals("Invite more Friends!")){
+                    inviteFriends();
+                }
+
+                /* do something more */
+            }
+        });
 
         return rootView;
     }
+
+
+    // implements the "invite friends" function
+    public void inviteFriends(){
+        String appLinkUrl, previewImageUrl;
+
+        appLinkUrl = "https://www.google.com";
+        previewImageUrl = "https://lh5.ggpht.com/DZG1niZb55ylVexAwfs19GHsY7kjt_onLmhtuAdQaZmPDpxHkYrpXI8iV1eGAlgm9N0=w300-rw";
+
+        if (AppInviteDialog.canShow()) {
+            AppInviteContent content = new AppInviteContent.Builder()
+                    .setApplinkUrl(appLinkUrl)
+                    .setPreviewImageUrl(previewImageUrl)
+                    .build();
+            AppInviteDialog.show(this, content);
+        }
+    }
+
+
 }

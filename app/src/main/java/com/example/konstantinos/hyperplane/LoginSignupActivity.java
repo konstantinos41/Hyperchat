@@ -14,6 +14,7 @@ import com.applozic.mobicomkit.api.account.register.RegistrationResponse;
 import com.applozic.mobicomkit.api.account.user.PushNotificationTask;
 import com.applozic.mobicomkit.api.account.user.User;
 import com.applozic.mobicomkit.api.account.user.UserLoginTask;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -39,6 +40,7 @@ public class LoginSignupActivity extends AppCompatActivity
     private CallbackManager callbackManager;
     private TextView info;
     private LoginButton loginButton;
+    public static AccessToken token;
 
 
     @Override
@@ -107,6 +109,8 @@ public class LoginSignupActivity extends AppCompatActivity
                 parameters.putString("fields", "id,name,email");
                 request.setParameters(parameters);
                 request.executeAsync();
+
+                token = loginResult.getAccessToken();
 
             }
 

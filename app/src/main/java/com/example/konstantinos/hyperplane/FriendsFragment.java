@@ -121,7 +121,7 @@ public class FriendsFragment extends Fragment {
         return rootView;
     }
 
-    
+
     // implements the "invite friends" function
     public void inviteFriends(){
         String appLinkUrl, previewImageUrl;
@@ -137,7 +137,6 @@ public class FriendsFragment extends Fragment {
             AppInviteDialog.show(this, content);
         }
     }
-
 
 
 }

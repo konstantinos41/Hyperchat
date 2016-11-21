@@ -41,8 +41,8 @@
     <color name="contact_userId_text_color">#838b83</color>
     <color name="applozic_multimedia_grid_view_background_color">#F0F0F0</color>
 
-    <color name="applozic_theme_color">#FFB3E5FC</color>
-    <color name="applozic_theme_color_primary">#FF03A9F4</color>
+    <color name="applozic_theme_color">#0288d1</color> // I edited this one
+    <color name="applozic_theme_color_primary">#0288d1</color> // I edited this one
     <color name="applozic_theme_color_primary_dark">#FF0288D1</color>
     <color name="applozic_theme_color_accent">#FF607D8B</color>
     <color name="applozic_theme_color_app">#ff0099cc</color>

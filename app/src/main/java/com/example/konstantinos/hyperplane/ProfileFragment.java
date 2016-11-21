@@ -88,7 +88,8 @@ public class ProfileFragment extends Fragment {
                 String channelName =  editTextNewTopic.getText().toString();
                 int groupType = 1;
                 AppContactService appContactService = new AppContactService(getActivity());
-                String imageUrl = "http://graph.facebook.com/1394550577239396/picture?type=square";
+                // For larger image resolution replace width with height
+                String imageUrl = "https://graph.facebook.com/" + LoginSignupActivity.UserID + "/picture?type=large&width=720";
 
                 final ProgressDialog progressDialog  = ProgressDialog.show(getActivity(), "",
                         getActivity().getString(TextUtils.isEmpty(channelName)? com.applozic.mobicomkit.uiwidgets.R.string.broadcast_creating_info: com.applozic.mobicomkit.uiwidgets.R.string.group_creating_info), true);

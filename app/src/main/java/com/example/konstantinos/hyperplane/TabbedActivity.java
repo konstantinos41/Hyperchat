@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.applozic.mobicomkit.uiwidgets.conversation.activity.ConversationActivity;
 import com.applozic.mobicomkit.uiwidgets.conversation.fragment.ConversationFragment;
+import com.applozic.mobicomkit.uiwidgets.conversation.fragment.MobiComConversationFragment;
 import com.applozic.mobicomkit.uiwidgets.conversation.fragment.MobiComQuickConversationFragment;
 import com.google.android.gms.location.places.Place;
 
@@ -129,7 +130,7 @@ public class TabbedActivity extends AppCompatActivity {
                 case 1:
                     return ProfileFragment.newInstance();
                 case 2:
-                    return PlaceholderFragment.newInstance();
+                    return TopicsFragment.newInstance();
             }
             return  null;
         }

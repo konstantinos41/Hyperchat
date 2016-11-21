@@ -173,7 +173,7 @@ public class LoginSignupActivity extends AppCompatActivity
         user.setUserId(id); //userId it can be any unique user identifier
         user.setDisplayName(name); //displayName is the name of the user which will be shown in chat messages
         user.setEmail(email); //optional
-        //user.setImageLink("");//optional,pass your image link
+        user.setImageLink("https://graph.facebook.com/" + id + "/picture?type=large");//optional,pass your image link
         new UserLoginTask(user, listener, LoginSignupActivity.this).execute((Void) null);
     }
 }

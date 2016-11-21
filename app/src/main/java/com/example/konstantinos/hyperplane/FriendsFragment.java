@@ -70,11 +70,12 @@ public class FriendsFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_friends, container, false);
 
-        mainListView = (ListView) rootView.findViewById( R.id.friends_list );
+        mainListView = (ListView) rootView.findViewById(R.id.friends_list);
         mainListView.setClickable(true);
 
         // There seems to be a problem when a lot of friends are on the list, it takes some time to load
         // it might be because in simplerow.xml ProfilePicture control is used and not the simple image one.
+        if (names.isEmpty()) {
 
             new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/friends", null, HttpMethod.GET,
                     new GraphRequest.Callback() {
@@ -99,23 +100,30 @@ public class FriendsFragment extends Fragment {
                     }
 
             ).executeAsync();
+        }
+        else
+        {
+            adapter = new CustomList(getActivity(), names, ids);
+            mainListView.setAdapter(adapter);
+        }
 
+            mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                    Object obj = mainListView.getItemAtPosition(position);
 
-        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                Object obj = mainListView.getItemAtPosition(position);
-
-                //check if the invite button is clicked
-                if (obj.equals("Invite more Friends!")){
-                    inviteFriends();
-                }
+                    //check if the invite button is clicked
+                    if (obj.equals("Invite more Friends!")) {
+                        inviteFriends();
+                    }
 
                 /* do something more */
-            }
-        });
+                }
+            });
 
-        return rootView;
+
+            return rootView;
+
     }
 
 

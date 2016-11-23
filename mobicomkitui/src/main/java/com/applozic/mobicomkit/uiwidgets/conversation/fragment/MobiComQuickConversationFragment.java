@@ -246,7 +246,7 @@ public class MobiComQuickConversationFragment extends Fragment implements Search
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-        if (!alCustomizationSettings.isStartNewButton()) {
+        /*if (!alCustomizationSettings.isStartNewButton()) {
             menu.removeItem(R.id.start_new);
         }else {
             menu.findItem(R.id.start_new).setVisible(true);
@@ -265,7 +265,7 @@ public class MobiComQuickConversationFragment extends Fragment implements Search
         }
         if(alCustomizationSettings.isBroadcastOption()){
             menu.findItem(R.id.broadcast).setVisible(true);
-        }
+        }*/
     }
 
     public void addMessage(final Message message) {

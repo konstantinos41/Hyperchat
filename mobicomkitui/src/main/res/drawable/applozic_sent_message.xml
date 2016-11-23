@@ -18,6 +18,6 @@
         android:top="2dp" />
 
     <!-- Here is the corner radius -->
-    <corners android:radius="10dp" />
+    <corners android:radius="4dp" />
 
 </shape>

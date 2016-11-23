@@ -49,6 +49,7 @@ public class TopicsFragment extends Fragment implements MessageCommunicator, Mob
 
     private static int retry;
     public LinearLayout layout;
+    public View rootView;
     public Snackbar snackbar;
     MobiComKitBroadcastReceiver mobiComKitBroadcastReceiver;
     ConversationUIService conversationUIService;
@@ -69,18 +70,18 @@ public class TopicsFragment extends Fragment implements MessageCommunicator, Mob
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        layout = (LinearLayout) layout.findViewById(R.id.footerAd);//this is snack bar layout needed
 
-        conversationUIService = new ConversationUIService(this, mobiComQuickConversationFragment);
-        mobiComKitBroadcastReceiver = new MobiComKitBroadcastReceiver(this, mobiComQuickConversationFragment);
-        new MobiComConversationService(this).processLastSeenAtStatus();
+        conversationUIService = new ConversationUIService(getActivity(), mobiComQuickConversationFragment);
+        mobiComKitBroadcastReceiver = new MobiComKitBroadcastReceiver(getActivity(), mobiComQuickConversationFragment);
+        new MobiComConversationService(getContext()).processLastSeenAtStatus();
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_topics, container, false);
+        rootView = inflater.inflate(R.layout.fragment_topics, container, false);
+        layout = (LinearLayout) rootView.findViewById(R.id.footerAd);//this is snack bar layout needed
 
         return rootView;
     }
@@ -128,22 +129,22 @@ public class TopicsFragment extends Fragment implements MessageCommunicator, Mob
     @Override
     public void onStop() {
         super.onStop();
-        final String deviceKeyString = MobiComUserPreference.getInstance(this).getDeviceKeyString();
-        final String userKeyString = MobiComUserPreference.getInstance(this).getSuUserKeyString();
-        Intent intent = new Intent(this, ApplozicMqttIntentService.class);
+        final String deviceKeyString = MobiComUserPreference.getInstance(getContext()).getDeviceKeyString();
+        final String userKeyString = MobiComUserPreference.getInstance(getContext()).getSuUserKeyString();
+        Intent intent = new Intent(getActivity(), ApplozicMqttIntentService.class);
         intent.putExtra(ApplozicMqttIntentService.USER_KEY_STRING, userKeyString);
         intent.putExtra(ApplozicMqttIntentService.DEVICE_KEY_STRING, deviceKeyString);
-        startService(intent);
+        //startService(intent);
     }
 
 
     @Override
     public void onResume() {
         super.onResume();
-        LocalBroadcastManager.getInstance(this).registerReceiver(mobiComKitBroadcastReceiver, BroadcastService.getIntentFilter());
-        Intent subscribeIntent = new Intent(this, ApplozicMqttIntentService.class);
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(mobiComKitBroadcastReceiver, BroadcastService.getIntentFilter());
+        Intent subscribeIntent = new Intent(getActivity(), ApplozicMqttIntentService.class);
         subscribeIntent.putExtra(ApplozicMqttIntentService.SUBSCRIBE, true);
-        startService(subscribeIntent);
+        //startService(subscribeIntent);
 
 
         if (!Utils.isInternetAvailable(getApplicationContext())) {
@@ -155,14 +156,14 @@ public class TopicsFragment extends Fragment implements MessageCommunicator, Mob
 
     @Override
     public void onPause() {
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mobiComKitBroadcastReceiver);
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mobiComKitBroadcastReceiver);
         super.onPause();
     }
 
 
     @Override
     public void onQuickConversationFragmentItemClick(View view, Contact contact, Channel channel, Integer conversationId, String searchString) {
-        Intent intent = new Intent(this, ConversationActivity.class);
+        Intent intent = new Intent(getActivity(), ConversationActivity.class);
         intent.putExtra(ConversationUIService.TAKE_ORDER, true);
         intent.putExtra(ConversationUIService.SEARCH_STRING, searchString);
         intent.putExtra(ConversationUIService.CONVERSATION_ID, conversationId);

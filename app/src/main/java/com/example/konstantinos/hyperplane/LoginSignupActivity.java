@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.applozic.mobicomkit.Applozic;
+import com.applozic.mobicomkit.ApplozicClient;
 import com.applozic.mobicomkit.api.account.register.RegistrationResponse;
 import com.applozic.mobicomkit.api.account.user.PushNotificationTask;
 import com.applozic.mobicomkit.api.account.user.User;
@@ -161,6 +162,8 @@ public class LoginSignupActivity extends AppCompatActivity
                 pushNotificationTask.execute((Void)null);
 
                 applozicContext = context;
+
+                ApplozicClient.getInstance(context).hideChatListOnNotification();
             }
 
             @Override

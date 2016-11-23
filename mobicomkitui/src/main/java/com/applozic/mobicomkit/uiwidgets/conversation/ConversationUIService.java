@@ -104,6 +104,7 @@ public class ConversationUIService {
     public static final String TOPIC_ID = "TOPIC_ID";
     private Contact contact;
     private NotificationManager notificationManager;
+    MobiComQuickConversationFragment mobiComQuickConversationFragment;
 
     public ConversationUIService(FragmentActivity fragmentActivity) {
         this.fragmentActivity = fragmentActivity;
@@ -112,15 +113,25 @@ public class ConversationUIService {
         this.notificationManager  = (NotificationManager) fragmentActivity.getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
+    public ConversationUIService(FragmentActivity fragmentActivity,MobiComQuickConversationFragment mobiComQuickConversationFragment) {
+        this.fragmentActivity = fragmentActivity;
+        this.baseContactService = new AppContactService(fragmentActivity);
+        this.userPreference = MobiComUserPreference.getInstance(fragmentActivity);
+        this.mobiComQuickConversationFragment = mobiComQuickConversationFragment;
+    }
+
+
     public MobiComQuickConversationFragment getQuickConversationFragment() {
 
-        MobiComQuickConversationFragment quickConversationFragment = (MobiComQuickConversationFragment) UIService.getFragmentByTag(fragmentActivity, QUICK_CONVERSATION_FRAGMENT);
+        /*MobiComQuickConversationFragment quickConversationFragment = (MobiComQuickConversationFragment) UIService.getFragmentByTag(fragmentActivity, QUICK_CONVERSATION_FRAGMENT);
 
         if (quickConversationFragment == null) {
             quickConversationFragment = new MobiComQuickConversationFragment();
             ConversationActivity.addFragment(fragmentActivity, quickConversationFragment, QUICK_CONVERSATION_FRAGMENT);
         }
-        return quickConversationFragment;
+        return quickConversationFragment;*/
+
+        return this.mobiComQuickConversationFragment;
     }
 
     public ConversationFragment getConversationFragment() {
@@ -375,7 +386,7 @@ public class ConversationUIService {
     }
 
     public void addMessage(Message message) {
-        if (message.isUpdateMessage()) {
+        /*if (message.isUpdateMessage()) {
             if (!BroadcastService.isQuick()) {
                 return;
             }
@@ -384,7 +395,17 @@ public class ConversationUIService {
             if (fragment != null) {
                 fragment.addMessage(message);
             }
+        }*/
+
+        if (!Message.ContentType.HIDDEN.getValue().equals(message.getContentType())) {
+            if (!BroadcastService.isQuick()) {
+                return;
+            }
+            if (mobiComQuickConversationFragment != null) {
+                mobiComQuickConversationFragment.addMessage(message);
+            }
         }
+
     }
 
     public void updateLastMessage(String keyString, String userId) {

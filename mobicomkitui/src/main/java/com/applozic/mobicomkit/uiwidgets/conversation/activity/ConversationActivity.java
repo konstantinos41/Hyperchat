@@ -326,11 +326,11 @@ public class ConversationActivity extends AppCompatActivity implements MessageCo
                 conversation = new ConversationFragment(contact, null,currentConversationId);
             }
             addFragment(this, conversation, ConversationUIService.CONVERSATION_FRAGMENT);
-        } else {
+        } /*else {
             quickConversationFragment = new MobiComQuickConversationFragment();
             setSearchListFragment(quickConversationFragment);
             addFragment(this, quickConversationFragment, ConversationUIService.QUICK_CONVERSATION_FRAGMENT);
-        }
+        }*/
 
         mobiComKitBroadcastReceiver = new MobiComKitBroadcastReceiver(this);
         InstructionUtil.showInfo(this, R.string.info_message_sync, BroadcastService.INTENT_ACTIONS.INSTRUCTION.toString());

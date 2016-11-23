@@ -5,7 +5,10 @@
     android:layout_marginTop="2dp"
     android:gravity="right"
     android:longClickable="true"
-    android:padding="4dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="4dp"
+    android:paddingLeft="4dp"
+    android:paddingRight="4dp"
     android:orientation="horizontal">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,12 +16,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="95dp"
+        android:layout_marginLeft="45dp"
         android:padding="5dp"
         android:minWidth="32dp"
         android:background="@drawable/applozic_sent_message"
         android:gravity="right|center_vertical"
-        android:minHeight="55dp"
+        android:minHeight="0dp"
         android:orientation="vertical">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -53,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autoLink="all"
-                android:padding="10dp"
+                android:padding="4dp"
                 android:text=""
                 android:textColor="@color/sent_message_text_color"
                 android:textSize="16sp" />
@@ -72,9 +75,10 @@
             android:visibility="gone" />
     </LinearLayout>
 
+    <!--I edited the layout height so as it is not visible-->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/messageTextLayout"
         android:orientation="horizontal"
@@ -99,7 +103,7 @@
             android:gravity="center"
             android:paddingLeft="2dp"
             android:text="created at time"
-            android:textSize="11sp" />
+            android:textSize="11sp"/>
 
     </LinearLayout>
 

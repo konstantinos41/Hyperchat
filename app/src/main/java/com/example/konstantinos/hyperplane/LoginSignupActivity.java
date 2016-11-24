@@ -74,16 +74,8 @@ public class LoginSignupActivity extends AppCompatActivity {
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("public_profile", "email", "user_birthday", "user_friends"));
 
-        // if logout_flag == 1 then the user has chose Logout otiion from options menu
-        int logout_flag = getIntent().getIntExtra("logout", 0);
-
-        if (logout_flag == 1) {
-            new UserClientService(applozicContext).logout();
-            LoginManager.getInstance().logOut();
-        }
-
         //check login status (access token)
-        if (AccessToken.getCurrentAccessToken() != null && logout_flag == 0) {
+        if (AccessToken.getCurrentAccessToken() != null) {
             loginButton.setVisibility(View.INVISIBLE);
             loginButton.setClickable(FALSE);
             requestData();

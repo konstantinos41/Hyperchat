@@ -32,6 +32,7 @@ import com.applozic.mobicomkit.uiwidgets.conversation.activity.ConversationActiv
 import com.applozic.mobicomkit.uiwidgets.conversation.fragment.ConversationFragment;
 import com.applozic.mobicomkit.uiwidgets.conversation.fragment.MobiComConversationFragment;
 import com.applozic.mobicomkit.uiwidgets.conversation.fragment.MobiComQuickConversationFragment;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -133,8 +134,8 @@ public class TabbedActivity extends AppCompatActivity {
     }
 
     public void onLogoutSelect (MenuItem item) {
+        LoginManager.getInstance().logOut();
         Intent intent = new Intent(TabbedActivity.this, LoginSignupActivity.class);
-        intent.putExtra("logout", 1);
         startActivity(intent);
     }
 

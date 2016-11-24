@@ -70,7 +70,6 @@ public class TopicsFragment extends Fragment implements MessageCommunicator, Mob
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         conversationUIService = new ConversationUIService(getActivity(), mobiComQuickConversationFragment);
         mobiComKitBroadcastReceiver = new MobiComKitBroadcastReceiver(getActivity(), mobiComQuickConversationFragment);
         new MobiComConversationService(getContext()).processLastSeenAtStatus();
@@ -134,6 +133,7 @@ public class TopicsFragment extends Fragment implements MessageCommunicator, Mob
         Intent intent = new Intent(getActivity(), ApplozicMqttIntentService.class);
         intent.putExtra(ApplozicMqttIntentService.USER_KEY_STRING, userKeyString);
         intent.putExtra(ApplozicMqttIntentService.DEVICE_KEY_STRING, deviceKeyString);
+        //startActivity(intent);
         //startService(intent);
     }
 
@@ -144,6 +144,7 @@ public class TopicsFragment extends Fragment implements MessageCommunicator, Mob
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(mobiComKitBroadcastReceiver, BroadcastService.getIntentFilter());
         Intent subscribeIntent = new Intent(getActivity(), ApplozicMqttIntentService.class);
         subscribeIntent.putExtra(ApplozicMqttIntentService.SUBSCRIBE, true);
+        //startActivity(subscribeIntent);
         //startService(subscribeIntent);
 
 

@@ -25,6 +25,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.applozic.mobicomkit.api.account.user.UserClientService;
 import com.applozic.mobicomkit.uiwidgets.conversation.ConversationUIService;
 import com.applozic.mobicomkit.uiwidgets.conversation.MobiComKitBroadcastReceiver;
 import com.applozic.mobicomkit.uiwidgets.conversation.activity.ConversationActivity;
@@ -110,6 +111,7 @@ public class TabbedActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_tabbed, menu);
+
         return true;
     }
 
@@ -118,14 +120,22 @@ public class TabbedActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+            case R.id.logout_button:
+                onLogoutSelect(item);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    public void onLogoutSelect (MenuItem item) {
+        Intent intent = new Intent(TabbedActivity.this, LoginSignupActivity.class);
+        intent.putExtra("logout", 1);
+        startActivity(intent);
     }
 
     /**
@@ -174,6 +184,9 @@ public class TabbedActivity extends AppCompatActivity {
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
+
+        //MobiComQuickConversationFragment mobiComQuickConversationFragment = new MobiComQuickConversationFragment();//this is a fragment
+
 
         @Override
         public Fragment getItem(int position) {

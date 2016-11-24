@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.applozic.mobicomkit.Applozic;
 import com.applozic.mobicomkit.ApplozicClient;
@@ -34,6 +36,9 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 
 public class LoginSignupActivity extends AppCompatActivity
 {
@@ -51,86 +56,87 @@ public class LoginSignupActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
 
+        //init
         FacebookSdk.sdkInitialize(getApplicationContext());
         //AppEventsLogger.activateApp(this);
         callbackManager = CallbackManager.Factory.create();
-
         setContentView(R.layout.activity_login_signup);
         info = (TextView)findViewById(R.id.info);
-
-
-
-
         loginButton = (LoginButton)findViewById(R.id.login_button);
-        loginButton.setReadPermissions( Arrays.asList(
-                "public_profile", "email", "user_birthday", "user_friends"));
+        loginButton.setReadPermissions( Arrays.asList("public_profile", "email", "user_birthday", "user_friends"));
+
+        //check login status (access token)
+        if(AccessToken.getCurrentAccessToken() != null){
+            loginButton.setVisibility(View.INVISIBLE);
+            loginButton.setClickable(FALSE);
+            requestData();
+        }
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                info.setText("User ID:  " +
-                        loginResult.getAccessToken().getUserId() + "\n" +
-                        "Auth Token: " + loginResult.getAccessToken().getToken());
 
-                GraphRequest request = GraphRequest.newMeRequest(
-                        loginResult.getAccessToken(),
-                        new GraphRequest.GraphJSONObjectCallback() {
-                            @Override
-                            public void onCompleted(
-                                    final JSONObject object,
-                                    GraphResponse response) {
-                                // Application code
-                                final JSONObject jsonObject = response.getJSONObject();
-                                String nombre = "";
-                                String email = "";
-                                String id = "";
-                                try {
-                                    nombre = jsonObject.getString("name");
-                                    email =  jsonObject.getString("email");
-                                    id = jsonObject.getString("id");
-
-                                    System.out.println(nombre);
-                                    System.out.println(email);
-                                    System.out.println(id);
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                                Name = nombre;
-                                Email = email;
-                                UserID = id;
-
-                                loginSignupToApplozic(nombre,email,id);
-                                startActivity(new Intent(LoginSignupActivity.this, TabbedActivity.class));
-
-                            }
-                        });
-
-
-
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,email");
-                request.setParameters(parameters);
-                request.executeAsync();
-
-                token = loginResult.getAccessToken();
-
+                if(AccessToken.getCurrentAccessToken() != null){
+                    requestData();
+                }
             }
 
             @Override
             public void onCancel() {
-                info.setText("Login attempt cancelled.");
+
             }
 
             @Override
-            public void onError(FacebookException e) {
-                info.setText(e.toString());
+            public void onError(FacebookException exception) {
             }
-
         });
-
-
     }
+
+
+    public void requestData(){
+        GraphRequest request = GraphRequest.newMeRequest(
+                AccessToken.getCurrentAccessToken(),
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(
+                            final JSONObject object,
+                            GraphResponse response) {
+                        // Application code
+                        final JSONObject jsonObject = response.getJSONObject();
+                        String nombre = "";
+                        String email = "";
+                        String id = "";
+                        try {
+                            nombre = jsonObject.getString("name");
+                            email =  jsonObject.getString("email");
+                            id = jsonObject.getString("id");
+
+                            System.out.println(nombre);
+                            System.out.println(email);
+                            System.out.println(id);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Name = nombre;
+                        Email = email;
+                        UserID = id;
+
+                        loginSignupToApplozic(nombre,email,id);
+                        startActivity(new Intent(LoginSignupActivity.this, TabbedActivity.class));
+                    }
+                });
+
+
+
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,name,email");
+        request.setParameters(parameters);
+        request.executeAsync();
+
+        token = AccessToken.getCurrentAccessToken();
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

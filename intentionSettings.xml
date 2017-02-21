@@ -1,5 +1,6 @@
 <application>
   <component name="IntentionManagerSettings">
     <ignoreAction name="Java/Refactorings/Introduce local variable" />
+    <ignoreAction name="Android/Insert App Indexing API Code" />
   </component>
 </application>

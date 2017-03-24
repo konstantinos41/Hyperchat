@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.applozic.mobicomkit.ApplozicClient;
 import com.applozic.mobicomkit.api.people.ChannelInfo;
@@ -39,6 +40,8 @@ import org.w3c.dom.Text;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class ProfileFragment extends Fragment {
@@ -86,6 +89,17 @@ public class ProfileFragment extends Fragment {
             {
 
                 String channelName =  editTextNewTopic.getText().toString();
+                if (channelName == null || channelName.isEmpty())
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Please give a name to your topic.";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    return;
+                }
+
                 int groupType = 1;
                 AppContactService appContactService = new AppContactService(getActivity());
                 // For larger image resolution replace width with height

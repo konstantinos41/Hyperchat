@@ -126,8 +126,8 @@ public class MobiComQuickConversationFragment extends Fragment implements Search
         listView = (ConversationListView) list.findViewById(R.id.messageList);
         listView.setBackgroundColor(getResources().getColor(R.color.conversation_list_all_background));
         listView.setScrollToBottomOnSizeChange(Boolean.FALSE);
-        toolbar = (Toolbar) getActivity().findViewById(R.id.my_toolbar);
-        toolbar.setClickable(false);
+        //toolbar = (Toolbar) getActivity().findViewById(R.id.my_toolbar);
+        //toolbar.setClickable(false);
         fabButton = (ImageButton) list.findViewById(R.id.fab_start_new);
         loading = true;
         LinearLayout individualMessageSendLayout = (LinearLayout) list.findViewById(R.id.individual_message_send_layout);
@@ -455,8 +455,8 @@ public class MobiComQuickConversationFragment extends Fragment implements Search
     @Override
     public void onResume() {
         //Assigning to avoid notification in case if quick conversation fragment is opened....
-        toolbar.setTitle(ApplozicApplication.TITLE);
-        toolbar.setSubtitle("");
+        //toolbar.setTitle(ApplozicApplication.TITLE);
+        //toolbar.setSubtitle("");
         BroadcastService.selectMobiComKitAll();
         super.onResume();
         latestMessageForEachContact.clear();

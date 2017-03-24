@@ -7,6 +7,7 @@ package com.applozic.mobicomkit.api.account.user;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.applozic.mobicomkit.ApplozicClient;
 import com.applozic.mobicomkit.api.account.register.RegisterUserClientService;
 import com.applozic.mobicomkit.api.account.register.RegistrationResponse;
 
@@ -66,6 +67,7 @@ public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
         // And if it is we call the callback function on it.
         if (result && this.taskListener != null) {
             this.taskListener.onSuccess(registrationResponse,context);
+            ApplozicClient.getInstance(context).hideChatListOnNotification();
 
         } else if (mException != null && this.taskListener != null) {
             this.taskListener.onFailure(registrationResponse, mException);

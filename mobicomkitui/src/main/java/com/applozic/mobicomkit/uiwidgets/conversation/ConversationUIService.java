@@ -104,13 +104,15 @@ public class ConversationUIService {
     public static final String TOPIC_ID = "TOPIC_ID";
     private Contact contact;
     private NotificationManager notificationManager;
+
     MobiComQuickConversationFragment mobiComQuickConversationFragment;
 
     public ConversationUIService(FragmentActivity fragmentActivity) {
         this.fragmentActivity = fragmentActivity;
         this.baseContactService = new AppContactService(fragmentActivity);
         this.userPreference = MobiComUserPreference.getInstance(fragmentActivity);
-        this.notificationManager  = (NotificationManager) fragmentActivity.getSystemService(Context.NOTIFICATION_SERVICE);
+        this.mobiComQuickConversationFragment = mobiComQuickConversationFragment;
+        //this.notificationManager  = (NotificationManager) fragmentActivity.getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
     public ConversationUIService(FragmentActivity fragmentActivity,MobiComQuickConversationFragment mobiComQuickConversationFragment) {

@@ -1,11 +1,13 @@
 package com.example.konstantinos.hyperplane;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -25,13 +27,25 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.applozic.mobicomkit.api.account.user.MobiComUserPreference;
 import com.applozic.mobicomkit.api.account.user.UserClientService;
+import com.applozic.mobicomkit.api.conversation.ApplozicMqttIntentService;
+import com.applozic.mobicomkit.api.conversation.Message;
+import com.applozic.mobicomkit.api.conversation.MobiComConversationService;
+import com.applozic.mobicomkit.api.people.ChannelCreate;
+import com.applozic.mobicomkit.broadcast.BroadcastService;
 import com.applozic.mobicomkit.uiwidgets.conversation.ConversationUIService;
+import com.applozic.mobicomkit.uiwidgets.conversation.MessageCommunicator;
 import com.applozic.mobicomkit.uiwidgets.conversation.MobiComKitBroadcastReceiver;
+import com.applozic.mobicomkit.uiwidgets.conversation.activity.ChannelCreateActivity;
 import com.applozic.mobicomkit.uiwidgets.conversation.activity.ConversationActivity;
+import com.applozic.mobicomkit.uiwidgets.conversation.activity.MobiComKitActivityInterface;
 import com.applozic.mobicomkit.uiwidgets.conversation.fragment.ConversationFragment;
 import com.applozic.mobicomkit.uiwidgets.conversation.fragment.MobiComConversationFragment;
 import com.applozic.mobicomkit.uiwidgets.conversation.fragment.MobiComQuickConversationFragment;
+import com.applozic.mobicommons.commons.core.utils.Utils;
+import com.applozic.mobicommons.people.channel.Channel;
+import com.applozic.mobicommons.people.contact.Contact;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -39,7 +53,11 @@ import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Place;
 
-public class TabbedActivity extends AppCompatActivity {
+
+
+
+public class TabbedActivity extends AppCompatActivity implements MessageCommunicator, MobiComKitActivityInterface
+{
 
     /**
      * The {@link PagerAdapter} that will provide
@@ -62,6 +80,109 @@ public class TabbedActivity extends AppCompatActivity {
      */
     private GoogleApiClient client;
 
+    private static int retry;
+    public LinearLayout layout;
+    public Snackbar snackbar;
+    MobiComKitBroadcastReceiver mobiComKitBroadcastReceiver;
+    ConversationUIService conversationUIService;
+    MobiComQuickConversationFragment mobiComQuickConversationFragment;
+
+
+    @Override
+    public void showErrorMessageView(String message) {
+        layout.setVisibility(View.VISIBLE);
+        snackbar = Snackbar.make(layout, message, Snackbar.LENGTH_LONG);
+        snackbar.setAction("OK", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                snackbar.dismiss();
+            }
+        });
+        snackbar.setDuration(Snackbar.LENGTH_LONG);
+        ViewGroup group = (ViewGroup) snackbar.getView();
+        TextView textView = (TextView) group.findViewById(R.id.snackbar_action);
+        textView.setTextColor(Color.YELLOW);
+        group.setBackgroundColor(getResources().getColor(R.color.error_background_color));
+        TextView txtView = (TextView) group.findViewById(R.id.snackbar_text);
+        txtView.setMaxLines(5);
+        snackbar.show();
+    }
+
+    @Override
+    public void retry() {
+        retry++;
+    }
+
+    @Override
+    public int getRetryCount() {
+        return retry;
+    }
+
+    public void dismissErrorMessage() {
+        if (snackbar != null) {
+            snackbar.dismiss();
+        }
+    }
+
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mobiComKitBroadcastReceiver, BroadcastService.getIntentFilter());
+        Intent subscribeIntent = new Intent(this, ApplozicMqttIntentService.class);
+        subscribeIntent.putExtra(ApplozicMqttIntentService.SUBSCRIBE, true);
+        startService(subscribeIntent);
+
+        if (!Utils.isInternetAvailable(getApplicationContext())) {
+            String errorMessage = getResources().getString(R.string.internet_connection_not_available);
+            showErrorMessageView(errorMessage);
+        }
+    }
+
+
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mobiComKitBroadcastReceiver);
+        super.onPause();
+    }
+
+    @Override
+    public void onQuickConversationFragmentItemClick(View view, Contact contact, Channel channel, Integer conversationId, String searchString) {
+        Intent intent = new Intent(this, ConversationActivity.class);
+        intent.putExtra(ConversationUIService.TAKE_ORDER, true);
+        intent.putExtra(ConversationUIService.SEARCH_STRING, searchString);
+        intent.putExtra(ConversationUIService.CONVERSATION_ID, conversationId);
+        if (contact != null) {
+            intent.putExtra(ConversationUIService.USER_ID, contact.getUserId());
+            intent.putExtra(ConversationUIService.DISPLAY_NAME, contact.getDisplayName());
+        } else if (channel != null) {
+            intent.putExtra(ConversationUIService.GROUP_ID, channel.getKey());
+            intent.putExtra(ConversationUIService.GROUP_NAME, channel.getName());
+        }
+        startActivity(intent);
+    }
+
+    @Override
+    public void startContactActivityForResult() {
+        conversationUIService.startContactActivityForResult();
+    }
+    @Override
+    public void addFragment(ConversationFragment conversationFragment) {
+    }
+
+
+
+    @Override
+    public void updateLatestMessage(final Message message, final String formattedContactNumber) {
+        conversationUIService.updateLatestMessage(message, formattedContactNumber);
+    }
+
+    @Override
+    public void removeConversation(Message message, String formattedContactNumber) {
+        conversationUIService.removeConversation(message, formattedContactNumber);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,17 +202,17 @@ public class TabbedActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-                Intent intent = new Intent(TabbedActivity.this, ConversationActivity.class);
-                startActivity(intent);
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//
+//                Intent intent = new Intent(TabbedActivity.this, ConversationActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         // Set the Profile Tab as start tab
         mViewPager.setCurrentItem(1);
@@ -105,6 +226,13 @@ public class TabbedActivity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        layout = (LinearLayout) findViewById(R.id.footerAd);//this is snack bar layout needed
+        //copy paste this code after setting the fragments in onCreate paste the below code
+        conversationUIService = new ConversationUIService(this, mobiComQuickConversationFragment);
+        mobiComKitBroadcastReceiver = new MobiComKitBroadcastReceiver(this, mobiComQuickConversationFragment);
+        new MobiComConversationService(this).processLastSeenAtStatus();
+
     }
 
 
@@ -199,7 +327,8 @@ public class TabbedActivity extends AppCompatActivity {
                 case 1:
                     return ProfileFragment.newInstance();
                 case 2:
-                    return TopicsFragment.newInstance();
+                    MobiComQuickConversationFragment mobiComQuickConversationFragment = new MobiComQuickConversationFragment();
+                    return mobiComQuickConversationFragment;
             }
             return null;
         }
@@ -222,5 +351,7 @@ public class TabbedActivity extends AppCompatActivity {
             }
             return null;
         }
+
+
     }
 }

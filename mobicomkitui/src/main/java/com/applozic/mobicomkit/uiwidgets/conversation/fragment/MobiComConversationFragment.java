@@ -885,40 +885,46 @@ abstract public class MobiComConversationFragment extends Fragment implements Vi
     }
 
     public void updateChannelSubTitle() {
+//        channelUserMapperList  = ChannelService.getInstance(getActivity()).getListOfUsersFromChannelUserMapper(channel.getKey());
+//        if (channelUserMapperList != null && channelUserMapperList.size() > 0) {
+//            StringBuffer stringBuffer = new StringBuffer();
+//            Contact contactDisplayName;
+//            String youString = null;
+//            int i = 0;
+//            for (ChannelUserMapper channelUserMapper : channelUserMapperList) {
+//                i++;
+//                if (i > 20)
+//                    break;
+//                contactDisplayName = appContactService.getContactById(channelUserMapper.getUserKey());
+//                if (!TextUtils.isEmpty(channelUserMapper.getUserKey())) {
+//                    if(MobiComUserPreference.getInstance(getActivity()).getUserId().equals(channelUserMapper.getUserKey())){
+//                        youString = getString(R.string.you_string);
+//                    }else {
+//                        stringBuffer.append(contactDisplayName.getDisplayName()).append(",");
+//                    }
+//                }
+//            }
+//            if (!TextUtils.isEmpty(stringBuffer)) {
+//                if (channelUserMapperList.size() <= 20) {
+//                    if(!TextUtils.isEmpty(youString)){
+//                        stringBuffer.append(youString).append(",");
+//                    }
+//                    int lastIndex = stringBuffer.lastIndexOf(",");
+//                    String userIds = stringBuffer.replace(lastIndex, lastIndex + 1, "").toString();
+//                    ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle(userIds);
+//                } else {
+//                    ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle(stringBuffer.toString());
+//                }
+//            }else {
+//                ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle(youString);
+//            }
+//        }
+        String adminName = appContactService.getContactById(channel.getAdminKey()).getFullName().split(" ")[0];
         channelUserMapperList  = ChannelService.getInstance(getActivity()).getListOfUsersFromChannelUserMapper(channel.getKey());
-        if (channelUserMapperList != null && channelUserMapperList.size() > 0) {
-            StringBuffer stringBuffer = new StringBuffer();
-            Contact contactDisplayName;
-            String youString = null;
-            int i = 0;
-            for (ChannelUserMapper channelUserMapper : channelUserMapperList) {
-                i++;
-                if (i > 20)
-                    break;
-                contactDisplayName = appContactService.getContactById(channelUserMapper.getUserKey());
-                if (!TextUtils.isEmpty(channelUserMapper.getUserKey())) {
-                    if(MobiComUserPreference.getInstance(getActivity()).getUserId().equals(channelUserMapper.getUserKey())){
-                        youString = getString(R.string.you_string);
-                    }else {
-                        stringBuffer.append(contactDisplayName.getDisplayName()).append(",");
-                    }
-                }
-            }
-            if (!TextUtils.isEmpty(stringBuffer)) {
-                if (channelUserMapperList.size() <= 20) {
-                    if(!TextUtils.isEmpty(youString)){
-                        stringBuffer.append(youString).append(",");
-                    }
-                    int lastIndex = stringBuffer.lastIndexOf(",");
-                    String userIds = stringBuffer.replace(lastIndex, lastIndex + 1, "").toString();
-                    ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle(userIds);
-                } else {
-                    ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle(stringBuffer.toString());
-                }
-            }else {
-                ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle(youString);
-            }
-        }
+        int numberOfPeople = channelUserMapperList.size() - 1;
+
+        String subtitleStr = numberOfPeople + " friends of " + adminName  + " are here";
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle(subtitleStr);
     }
 
     public boolean isBroadcastedToChannel(Integer channelKey) {

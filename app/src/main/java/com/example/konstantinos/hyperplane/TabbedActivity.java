@@ -17,6 +17,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -189,6 +190,9 @@ public class TabbedActivity extends AppCompatActivity implements MessageCommunic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed);
 
+        mobiComQuickConversationFragment = new MobiComQuickConversationFragment();
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -201,6 +205,40 @@ public class TabbedActivity extends AppCompatActivity implements MessageCommunic
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition(),true);
+                switch (tab.getPosition()) {
+                    case 0:
+                        Log.i("first","tab");
+                        break;
+                    case 1:
+                        Log.i("second","tab");
+
+                        break;
+                    case 2:
+                        Log.i("third","load the 3rd fragment on selected ");
+                        mSectionsPagerAdapter.getItem(2).onResume();
+
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -232,6 +270,7 @@ public class TabbedActivity extends AppCompatActivity implements MessageCommunic
         conversationUIService = new ConversationUIService(this, mobiComQuickConversationFragment);
         mobiComKitBroadcastReceiver = new MobiComKitBroadcastReceiver(this, mobiComQuickConversationFragment);
         new MobiComConversationService(this).processLastSeenAtStatus();
+
 
     }
 
@@ -327,7 +366,6 @@ public class TabbedActivity extends AppCompatActivity implements MessageCommunic
                 case 1:
                     return ProfileFragment.newInstance();
                 case 2:
-                    MobiComQuickConversationFragment mobiComQuickConversationFragment = new MobiComQuickConversationFragment();
                     return mobiComQuickConversationFragment;
             }
             return null;

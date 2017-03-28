@@ -36,7 +36,8 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginBottom="?attr/actionBarSize"/>
 
     <!--<android.support.design.widget.FloatingActionButton-->
         <!--android:id="@+id/fab"-->
@@ -52,7 +53,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="gone"
-        android:layout_gravity="top">
+        android:layout_gravity="top" >
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

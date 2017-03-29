@@ -42,6 +42,7 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
@@ -72,7 +73,7 @@ public class LoginSignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_signup);
         info = (TextView) findViewById(R.id.info);
         loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions(Arrays.asList("public_profile", "email", "user_birthday", "user_friends"));
+        loginButton.setReadPermissions(Arrays.asList("public_profile", "email", "user_friends"));
 
         //check login status (access token)
         if (AccessToken.getCurrentAccessToken() != null) {
@@ -86,7 +87,18 @@ public class LoginSignupActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
 
                 if (AccessToken.getCurrentAccessToken() != null) {
-                    requestData();
+                    if (AccessToken.getCurrentAccessToken().getDeclinedPermissions().size() == 0) {
+                        requestData();
+                    } else {
+                        Context context = getApplicationContext();
+                        CharSequence text = "You need to accept all permissions to use this app. Please log out and log back in.";
+                        int duration = Toast.LENGTH_LONG;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+
+                        loginButton.setReadPermissions(Arrays.asList("public_profile", "email", "user_friends"));
+                    }
                 }
             }
 

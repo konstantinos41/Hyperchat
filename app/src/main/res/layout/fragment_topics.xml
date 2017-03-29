@@ -8,14 +8,5 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.konstantinos.hyperplane.TabbedActivity$TopicsFragment">
 
-    <LinearLayout
-        android:id="@+id/footerAd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone"
-        android:layout_gravity="top">
-    </LinearLayout>
-
 
 </RelativeLayout>

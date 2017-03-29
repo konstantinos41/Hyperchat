@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.applozic.mobicomkit.api.account.user.MobiComUserPreference;
 import com.applozic.mobicomkit.api.account.user.UserClientService;
@@ -216,12 +217,10 @@ public class TabbedActivity extends AppCompatActivity implements MessageCommunic
                         break;
                     case 1:
                         Log.i("second","tab");
-
                         break;
                     case 2:
                         Log.i("third","load the 3rd fragment on selected ");
                         mSectionsPagerAdapter.getItem(2).onResume();
-
                         break;
 
                 }
@@ -340,6 +339,15 @@ public class TabbedActivity extends AppCompatActivity implements MessageCommunic
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Log.d("onBackPressed","LOG");
+
+        // set the View (Fragment) when the back button is pressed
+        //mViewPager.setCurrentItem(1);
     }
 
 

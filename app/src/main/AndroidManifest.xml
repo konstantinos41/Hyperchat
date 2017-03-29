@@ -112,7 +112,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTop"
             android:parentActivityName="com.applozic.mobicomkit.uiwidgets.conversation.activity.ConversationActivity"
-            android:theme="@style/ApplozicTheme"></activity>
+            android:theme="@style/ApplozicTheme" />
         <activity
             android:name="com.applozic.mobicomkit.uiwidgets.conversation.activity.ChannelInfoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -139,7 +139,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName="com.applozic.mobicomkit.uiwidgets.conversation.activity.ConversationActivity"
             android:theme="@style/ApplozicTheme"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
         <service
@@ -161,14 +161,13 @@
         <service
             android:name="com.applozic.mobicomkit.api.conversation.ConversationReadService"
             android:exported="false" />
-
-        <service android:name="com.example.konstantinos.hyperplane.pushnotification.FcmListenerService">
+        <service android:name=".pushnotification.FcmListenerService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <service android:name="com.example.konstantinos.hyperplane.pushnotification.FcmInstanceIDListenerService"
+        <service
+            android:name=".pushnotification.FcmInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -238,7 +237,10 @@
         <activity
             android:name=".TabbedActivity"
             android:label="@string/title_activity_tabbed"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>

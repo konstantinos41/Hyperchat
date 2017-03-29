@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -37,20 +38,23 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:support-v4:24.2.1'
-    compile 'com.android.support:design:24.2.1'
-    compile 'com.microsoft.azure:azure-mobile-android:3.1.0'
-    testCompile 'junit:junit:4.12'
-    compile 'com.google.android.gms:play-services-appindexing:9.0.2'
-    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
 
     compile project(':mobicomkitui')
 //    compile 'com.applozic.communication.uiwidget:mobicomkitui:4.63'
 
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.microsoft.azure:azure-mobile-android:3.1.0'
+    compile 'com.google.android.gms:play-services-appindexing:9.0.2'
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.android.support:support-vector-drawable:24.2.1'
+    testCompile 'junit:junit:4.12'
 }
 
 apply plugin: 'com.google.gms.google-services'
+
+
 
 
 

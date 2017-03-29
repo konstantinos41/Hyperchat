@@ -2,7 +2,7 @@ package com.example.konstantinos.hyperplane;
 
 /**
  * Created by Konstantinos on 11/15/2016.
- * 
+ *
  */
 
 

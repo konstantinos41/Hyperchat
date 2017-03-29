@@ -1,5 +1,6 @@
 package com.example.konstantinos.hyperplane.pushnotification;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +14,7 @@ import com.applozic.mobicomkit.api.account.user.PushNotificationTask;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.RemoteMessage;
 
 public class FCMRegistrationUtils extends Handler {
 
@@ -45,6 +47,7 @@ public class FCMRegistrationUtils extends Handler {
 
             pushNotificationTask = new PushNotificationTask(pushnotificationId, listener, context);
             pushNotificationTask.execute((Void) null);
+
 
         } else {
             Log.i(TAG, "Handler: Background registration failed");

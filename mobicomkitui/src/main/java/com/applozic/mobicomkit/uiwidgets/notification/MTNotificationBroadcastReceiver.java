@@ -41,6 +41,7 @@ public class MTNotificationBroadcastReceiver extends BroadcastReceiver {
                     new NotificationService(notificationId == 0 ? R.drawable.mobicom_ic_launcher : notificationId, context, R.string.wearable_action_label, R.string.wearable_action_title, R.drawable.mobicom_ic_action_send);
 
 
+
             if (MobiComUserPreference.getInstance(context).isLoggedIn()) {
                 new Thread(new Runnable() {
                     @Override

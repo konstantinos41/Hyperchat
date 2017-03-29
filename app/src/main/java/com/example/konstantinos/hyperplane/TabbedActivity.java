@@ -293,6 +293,8 @@ public class TabbedActivity extends AppCompatActivity implements MessageCommunic
 
         switch (item.getItemId()) {
             case R.id.action_settings:
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.logout_button:
                 onLogoutSelect(item);

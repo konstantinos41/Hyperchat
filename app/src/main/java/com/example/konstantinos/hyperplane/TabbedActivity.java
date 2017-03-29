@@ -3,6 +3,8 @@ package com.example.konstantinos.hyperplane;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +20,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -344,10 +347,18 @@ public class TabbedActivity extends AppCompatActivity implements MessageCommunic
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-        Log.d("onBackPressed","LOG");
+    }
 
-        // set the View (Fragment) when the back button is pressed
-        //mViewPager.setCurrentItem(1);
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)    {
+        switch(keyCode)
+        {
+            case KeyEvent.KEYCODE_BACK:
+                moveTaskToBack(true);
+                return true;
+        }
+        return false;
     }
 
 

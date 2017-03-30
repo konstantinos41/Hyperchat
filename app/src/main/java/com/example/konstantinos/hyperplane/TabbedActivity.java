@@ -305,7 +305,10 @@ public class TabbedActivity extends AppCompatActivity implements MessageCommunic
     }
 
     public void onLogoutSelect (MenuItem item) {
+        // Logout from Facebook
         LoginManager.getInstance().logOut();
+        // Logout from Applozic
+        new UserClientService(this).logout();
         Intent intent = new Intent(TabbedActivity.this, LoginSignupActivity.class);
         startActivity(intent);
     }

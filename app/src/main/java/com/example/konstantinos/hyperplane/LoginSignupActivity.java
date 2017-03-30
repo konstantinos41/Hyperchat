@@ -1,7 +1,11 @@
 package com.example.konstantinos.hyperplane;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,6 +70,16 @@ public class LoginSignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        initializeFacebookLogin();
+
+        checkIfUserIsLoggedIn();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    private void initializeFacebookLogin(){
         //init
         FacebookSdk.sdkInitialize(getApplicationContext());
         //AppEventsLogger.activateApp(this);
@@ -74,13 +88,6 @@ public class LoginSignupActivity extends AppCompatActivity {
         info = (TextView) findViewById(R.id.info);
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("public_profile", "email", "user_friends"));
-
-        //check login status (access token)
-        if (AccessToken.getCurrentAccessToken() != null) {
-            loginButton.setVisibility(View.INVISIBLE);
-            loginButton.setClickable(FALSE);
-            requestData();
-        }
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -109,11 +116,10 @@ public class LoginSignupActivity extends AppCompatActivity {
 
             @Override
             public void onError(FacebookException exception) {
+                showNetworkMessage();
             }
         });
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
     }
 
 
@@ -244,4 +250,44 @@ public class LoginSignupActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
+
+    private void checkIfUserIsLoggedIn(){
+        //check login status (access token)
+        if (isNetworkAvailable()) {
+            if (AccessToken.getCurrentAccessToken() != null) {
+                loginButton.setVisibility(View.INVISIBLE);
+                loginButton.setClickable(FALSE);
+                requestData();
+            }
+        }
+        else{
+            showNetworkMessage();
+        }
+    }
+
+    private void showNetworkMessage(){
+        if (!isNetworkAvailable()){
+            new AlertDialog.Builder(LoginSignupActivity.this)
+                    .setTitle("Internet Connection")
+                    .setMessage("Please check your internet connection and try again.")
+                    .setCancelable(false)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            showNetworkMessage();
+                        }
+                    }).show();
+        }
+        else{
+            checkIfUserIsLoggedIn();
+        }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
 }

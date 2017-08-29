@@ -292,10 +292,10 @@ public class TabbedActivity extends AppCompatActivity implements MessageCommunic
         // as you specify a parent activity in AndroidManifest.xml.
 
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
-                return true;
+//            case R.id.action_settings:
+//                Intent intent = new Intent(this, SettingsActivity.class);
+//                startActivity(intent);
+//                return true;
             case R.id.logout_button:
                 onLogoutSelect(item);
                 return true;

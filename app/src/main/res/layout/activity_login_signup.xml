@@ -41,13 +41,12 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="HyperPlane"
+        android:text="Hyperchat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
         android:textColor="@android:color/white"
-        android:textStyle="normal|bold"
-        android:textSize="31sp"
+        android:textSize="26sp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

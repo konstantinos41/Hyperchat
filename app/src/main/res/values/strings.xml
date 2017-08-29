@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hyperplane</string>
+    <string name="app_name">Hyperchat</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -24,7 +24,7 @@
 
     <string name="default_media_location_folder">Hyperplane</string>
     <string name="applozic_application_key">680b22a1057daa9b1eef01c567d6b53c</string>
-    <string name="title_activity_tabbed">HyperPlane</string>
+    <string name="title_activity_tabbed">Hyperchat</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 

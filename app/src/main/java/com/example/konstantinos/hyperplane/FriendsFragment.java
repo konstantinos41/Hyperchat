@@ -89,7 +89,7 @@ public class FriendsFragment extends Fragment {
                                     ids.add(0, friendslist.getJSONObject(l).getString("id"));
                                 }
 
-                                names.add("Invite more Friends!");
+                                names.add("Invite Friends!");
                                 ids.add("");
                                 adapter = new CustomList(getActivity(), names, ids);
                                 mainListView.setAdapter(adapter);
@@ -113,7 +113,7 @@ public class FriendsFragment extends Fragment {
                     Object obj = mainListView.getItemAtPosition(position);
 
                     //check if the invite button is clicked
-                    if (obj.equals("Invite more Friends!")) {
+                    if (obj.equals("Invite Friends!")) {
                         inviteFriends();
                     }
 

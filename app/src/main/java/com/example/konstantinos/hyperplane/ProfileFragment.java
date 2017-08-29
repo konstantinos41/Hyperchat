@@ -73,7 +73,6 @@ public class ProfileFragment extends Fragment {
     {
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
-
         TextView textViewName = (TextView) rootView.findViewById(R.id.textViewName);
         textViewName.setText(LoginSignupActivity.Name);
 
@@ -159,9 +158,6 @@ public class ProfileFragment extends Fragment {
                     applozicChannelCreateTask.setType(groupType);
                     applozicChannelCreateTask.execute((Void) null);
                 }
-
-
-
             }
         });
 

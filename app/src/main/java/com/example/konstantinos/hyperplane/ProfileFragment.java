@@ -35,6 +35,7 @@ import com.applozic.mobicommons.people.channel.Channel;
 import com.applozic.mobicommons.people.channel.ChannelMetadata;
 import com.applozic.mobicommons.people.contact.Contact;
 import com.facebook.login.widget.ProfilePictureView;
+import com.hyperplane.hyperchat.R;
 
 import org.w3c.dom.Text;
 

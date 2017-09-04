@@ -34,6 +34,7 @@ import com.applozic.mobicommons.commons.core.utils.Utils;
 import com.applozic.mobicommons.people.channel.Channel;
 import com.applozic.mobicommons.people.contact.Contact;
 import com.google.android.gms.location.places.Place;
+import com.hyperplane.hyperchat.R;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 

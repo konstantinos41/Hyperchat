@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.login.widget.ProfilePictureView;
+import com.hyperplane.hyperchat.R;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;

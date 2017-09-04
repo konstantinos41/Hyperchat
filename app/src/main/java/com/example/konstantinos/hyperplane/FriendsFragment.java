@@ -25,6 +25,7 @@ import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 import com.facebook.share.model.AppInviteContent;
 import com.facebook.share.widget.AppInviteDialog;
+import com.hyperplane.hyperchat.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

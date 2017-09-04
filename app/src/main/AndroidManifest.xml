@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.konstantinos.hyperplane">
+    package="com.hyperplane.hyperchat">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.example.konstantinos.hyperplane.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="com.hyperplane.hyperchat.permission.MAPS_RECEIVE" />
 
     <permission
-        android:name="com.example.konstantinos.hyperplane.permission.MAPS_RECEIVE"
+        android:name="com.hyperplane.hyperchat.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
     <uses-permission android:name="android.permission.INTERNET" />

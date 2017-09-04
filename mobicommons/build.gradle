@@ -21,6 +21,9 @@ android {
         abortOnError false
 
     }
+    configurations {
+        all*.exclude group: 'com.microsoft.windowsazure', module: 'mobileservices'
+    }
 }
 
 dependencies {

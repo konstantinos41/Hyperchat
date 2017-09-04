@@ -57,8 +57,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Place;
-
-
+import com.hyperplane.hyperchat.R;
 
 
 public class TabbedActivity extends AppCompatActivity implements MessageCommunicator, MobiComKitActivityInterface

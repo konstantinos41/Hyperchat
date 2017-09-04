@@ -1,5 +1,6 @@
 package com.applozic.mobicomkit.uiwidgets.schedule;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ public class SelectDateFragment extends DialogFragment implements DatePickerDial
 
     }
 
+    @SuppressLint("ValidFragment") // This can potentially create crashes. TO DO: Fix it without SupressLint
     public SelectDateFragment(TextView selectedDate) {
         this.selectedDate = selectedDate;
     }

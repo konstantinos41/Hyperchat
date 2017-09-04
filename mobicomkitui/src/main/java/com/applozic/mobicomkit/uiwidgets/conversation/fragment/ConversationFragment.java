@@ -1,5 +1,6 @@
 package com.applozic.mobicomkit.uiwidgets.conversation.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.location.Location;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class ConversationFragment extends MobiComConversationFragment implements
         this.messageIntentClass = MessageIntentService.class;
     }
 
+    @SuppressLint("ValidFragment") // This can potentially create crashes. TO DO: Fix it without SupressLint
     public ConversationFragment(Contact contact, Channel channel,Integer conversationId) {
         this.messageIntentClass = MessageIntentService.class;
         this.contact = contact;
@@ -40,6 +42,7 @@ public class ConversationFragment extends MobiComConversationFragment implements
         this.currentConversationId = conversationId;
     }
 
+    @SuppressLint("ValidFragment") // This can potentially create crashes. TO DO: Fix it without SupressLint
     public ConversationFragment(Contact contact, Channel channel,Integer conversationId,String searchString) {
         this.messageIntentClass = MessageIntentService.class;
         this.contact = contact;

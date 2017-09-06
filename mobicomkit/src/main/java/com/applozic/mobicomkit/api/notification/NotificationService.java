@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
@@ -115,7 +116,7 @@ public class NotificationService {
 
         PendingIntent  pendingIntent = PendingIntent.getActivity(context, (int) (System.currentTimeMillis() & 0xfffffff),
                 intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
+        long[] pattern = {500,500,500,500,500};
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(smallIconResourceId)
@@ -125,7 +126,10 @@ public class NotificationService {
                         .setWhen(System.currentTimeMillis())
                         .setContentTitle(title)
                         .setContentText(channel != null ? displayNameContact.getDisplayName() + ": " + notificationText : notificationText)
-                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+                        //.setVibrate(pattern)
+                        //.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                        .setLights(Color.CYAN,500,500);
+
         mBuilder.setContentIntent(pendingIntent);
         mBuilder.setAutoCancel(true);
         if (message.hasAttachment()) {

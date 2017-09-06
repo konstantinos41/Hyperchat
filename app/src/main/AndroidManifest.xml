@@ -33,7 +33,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginSignupActivity"
+            android:name="com.example.konstantinos.hyperplane.LoginSignupActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,13 +46,13 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:parentActivityName=".LoginSignupActivity"
+            android:parentActivityName="com.example.konstantinos.hyperplane.LoginSignupActivity"
             android:theme="@style/ApplozicTheme">
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginSignupActivity" />
+                android:value="com.example.konstantinos.hyperplane.LoginSignupActivity" />
         </activity>
         <activity
             android:name="com.applozic.mobicomkit.uiwidgets.people.activity.MobiComKitPeopleActivity"
@@ -161,13 +161,13 @@
         <service
             android:name="com.applozic.mobicomkit.api.conversation.ConversationReadService"
             android:exported="false" />
-        <service android:name=".pushnotification.FcmListenerService">
+        <service android:name="com.example.konstantinos.hyperplane.pushnotification.FcmListenerService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:name=".pushnotification.FcmInstanceIDListenerService"
+            android:name="com.example.konstantinos.hyperplane.pushnotification.FcmInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -235,11 +235,11 @@
         </receiver>
 
         <activity
-            android:name=".TabbedActivity"
+            android:name="com.example.konstantinos.hyperplane.TabbedActivity"
             android:label="@string/title_activity_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.example.konstantinos.hyperplane.SettingsActivity"
             android:label="@string/title_activity_settings"></activity>
     </application>
 

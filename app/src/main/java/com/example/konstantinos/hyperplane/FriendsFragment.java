@@ -132,8 +132,8 @@ public class FriendsFragment extends Fragment {
     public void inviteFriends(){
         String appLinkUrl, previewImageUrl;
 
-        appLinkUrl = "https://www.google.com";
-        previewImageUrl = "https://lh5.ggpht.com/DZG1niZb55ylVexAwfs19GHsY7kjt_onLmhtuAdQaZmPDpxHkYrpXI8iV1eGAlgm9N0=w300-rw";
+        appLinkUrl = "https://fb.me/1480461032002294";
+        previewImageUrl = "https://i.imgur.com/iVSV7z0.png";
 
         if (AppInviteDialog.canShow()) {
             AppInviteContent content = new AppInviteContent.Builder()

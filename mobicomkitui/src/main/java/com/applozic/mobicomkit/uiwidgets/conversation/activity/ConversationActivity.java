@@ -351,12 +351,12 @@ public class ConversationActivity extends AppCompatActivity implements MessageCo
             new MobiComConversationService(getApplicationContext()).processLastSeenAtStatus();
         }
 
-        if (ApplozicClient.getInstance(this).isAccountClosed() || ApplozicClient.getInstance(this).isNotAllowed()) {
-            snackbar = Snackbar.make(layout, ApplozicClient.getInstance(this).isAccountClosed() ?
-                            R.string.applozic_account_closed : R.string.applozic_free_version_not_allowed_on_release_build,
-                    Snackbar.LENGTH_INDEFINITE);
-            snackbar.show();
-        }
+//        if (ApplozicClient.getInstance(this).isAccountClosed() || ApplozicClient.getInstance(this).isNotAllowed()) {
+//            snackbar = Snackbar.make(layout, ApplozicClient.getInstance(this).isAccountClosed() ?
+//                            R.string.applozic_account_closed : R.string.applozic_free_version_not_allowed_on_release_build,
+//                    Snackbar.LENGTH_INDEFINITE);
+//            snackbar.show();
+//        }
     }
 
     @Override

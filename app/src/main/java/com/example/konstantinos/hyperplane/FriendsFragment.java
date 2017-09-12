@@ -78,7 +78,7 @@ public class FriendsFragment extends Fragment {
         // it might be because in simplerow.xml ProfilePicture control is used and not the simple image one.
         if (names.isEmpty()) {
 
-            new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/friends", null, HttpMethod.GET,
+            new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/friends?limit=200", null, HttpMethod.GET,
                     new GraphRequest.Callback() {
                         public void onCompleted(GraphResponse response) {
                             try {

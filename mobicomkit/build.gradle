@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
+    compile project(":settingsmodule")
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile files('libs/org.eclipse.paho.android.service-1.0.2.jar')
     compile files('libs/org.eclipse.paho.client.mqttv3-1.0.2.jar')

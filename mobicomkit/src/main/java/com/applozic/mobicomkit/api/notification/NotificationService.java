@@ -26,6 +26,7 @@ import com.applozic.mobicommons.json.GsonUtils;
 import com.applozic.mobicommons.people.channel.Channel;
 import com.applozic.mobicommons.people.channel.ChannelUtils;
 import com.applozic.mobicommons.people.contact.Contact;
+import com.example.settingsmodule.MySettings;
 
 import java.io.File;
 import java.io.InputStream;
@@ -129,6 +130,18 @@ public class NotificationService {
                         //.setVibrate(pattern)
                         //.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                         .setLights(Color.CYAN,500,500);
+
+        MySettings.loadAllNotificationPreferences(context);
+        if((displayNameContact.getDisplayName() + ": " + notificationText).contains(displayNameContact.getDisplayName()+" created group ")){
+            if(MySettings.isHasNotificationLedNewGroup()) mBuilder.setLights(Color.CYAN,500,500);
+            if(MySettings.isHasNotificationSoundNewGroup()) mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+            if(MySettings.isHasNotificationVibrationNewGroup()) mBuilder.setVibrate(pattern);
+        }
+        else{
+            if(MySettings.isHasNotificationLedNewMessage()) mBuilder.setLights(Color.CYAN,500,500);
+            if(MySettings.isHasNotificationSoundNewMessage()) mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+            if(MySettings.isHasNotificationVibrationNewMessage()) mBuilder.setVibrate(pattern);
+        }
 
         mBuilder.setContentIntent(pendingIntent);
         mBuilder.setAutoCancel(true);

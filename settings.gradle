@@ -1,1 +1,1 @@
-include ':app', ':mobicomkitui', ':mobicomkit', ':mobicommons'
+include ':app', ':mobicomkitui', ':mobicomkit', ':mobicommons', ':settingsmodule'

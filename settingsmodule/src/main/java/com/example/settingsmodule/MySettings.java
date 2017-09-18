@@ -107,6 +107,7 @@ public class MySettings {
             editor.putBoolean(NotificationSoundNewGroup, hasNotificationSoundNewGroup);
             editor.putBoolean(NotificationVibrationNewGroup, hasNotificationVibrationNewGroup);
             editor.putBoolean(NotificationLedNewGroup, hasNotificationLedNewGroup);
+            editor.commit();
             return true;
         }catch(Exception e)
         {

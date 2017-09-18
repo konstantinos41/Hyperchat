@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.preference.PreferenceActivity;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -291,10 +292,12 @@ public class TabbedActivity extends AppCompatActivity implements MessageCommunic
         // as you specify a parent activity in AndroidManifest.xml.
 
         switch (item.getItemId()) {
-//            case R.id.action_settings:
-//                Intent intent = new Intent(this, SettingsActivity.class);
-//                startActivity(intent);
-//                return true;
+            case R.id.action_settings:
+                Intent intent = new Intent(this, SettingsActivity.class);
+                intent.putExtra( PreferenceActivity.EXTRA_SHOW_FRAGMENT, SettingsActivity.NotificationPreferenceFragment.class.getName() );
+                intent.putExtra( PreferenceActivity.EXTRA_NO_HEADERS, true );
+                startActivity(intent);
+                return true;
             case R.id.logout_button:
                 onLogoutSelect(item);
                 return true;

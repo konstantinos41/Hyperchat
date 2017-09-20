@@ -239,8 +239,10 @@
             android:label="@string/title_activity_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.example.konstantinos.hyperplane.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:name="com.example.konstantinos.hyperplane.SettingsActivity_toBeDeleted"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".SettingsActivity"
+            android:parentActivityName="com.example.konstantinos.hyperplane.TabbedActivity"></activity>
     </application>
 
 </manifest>

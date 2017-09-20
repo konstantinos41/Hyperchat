@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hyperplane.hyperchat.SettingsActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <Switch
+            android:id="@+id/notifications_new_message"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:checked="false"
+            android:text="Notification sound on new message"
+            android:title="Notification sound"
+            tools:checked="true" />
+
+        <Switch
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/notifications_new_message_vibrate"
+            android:text="Vibrate on new message"
+            android:title="Vibration" />
+
+        <Switch
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:defaultValue="true"
+            android:dependency="notifications_new_message"
+            android:id="@+id/notifications_new_message_led"
+            android:text="Show LED notification on new message"
+            android:title="LED light" />
+
+        <Switch
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/notifications_new_group"
+            android:title="Notification sound"
+            android:text="Notification sound on new group"
+            />
+
+        <Switch
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/notifications_new_group_vibrate"
+            android:text="Vibrate on new group"
+            android:title="Vibration" />
+
+        <Switch
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:defaultValue="true"
+            android:dependency="notifications_new_message"
+            android:id="@+id/notifications_new_group_led"
+            android:text="Show LED notification on new group"
+            android:title="LED light" />
+
+
+    </LinearLayout>
+    <!--<Category-->
+        <!--android:layout="@layout/preferences_category"-->
+        <!--android:key="pref_key_message_notifications"-->
+        <!--android:title="Message Notifications">-->
+
+        <!--<CheckBox-->
+            <!--android:defaultValue="true"-->
+            <!--android:disableDependentsState="false"-->
+            <!--android:key="notifications_new_message"-->
+            <!--android:title="Notification sound" />-->
+
+        <!--&lt;!&ndash;<RingtonePreference-->
+            <!--android:defaultValue="content://settings/system/notification_sound"-->
+            <!--android:dependency="notifications_new_message"-->
+            <!--android:key="notifications_new_message_ringtone"-->
+            <!--android:ringtoneType="notification"-->
+            <!--android:title="@string/pref_title_ringtone" />&ndash;&gt;-->
+
+        <!--<Switch-->
+            <!--android:defaultValue="true"-->
+            <!--android:dependency="notifications_new_message"-->
+            <!--android:key="notifications_new_message_vibrate"-->
+            <!--android:title="Vibration" />-->
+
+        <!--<Switch-->
+            <!--android:defaultValue="true"-->
+            <!--android:dependency="notifications_new_message"-->
+            <!--android:key="notifications_new_message_led"-->
+            <!--android:title="LED light" />-->
+    <!--</Category>-->
+
+    <!--<Category-->
+        <!--android:layout="@layout/preferences_category"-->
+        <!--android:title="Group Notifications"-->
+        <!--android:key="pref_key_group_notifications">-->
+
+        <!--<CheckBox-->
+            <!--android:defaultValue="true"-->
+            <!--android:key="notifications_new_group"-->
+            <!--android:title="Notification sound" />-->
+
+        <!--&lt;!&ndash;<RingtonePreference-->
+            <!--android:defaultValue="content://settings/system/notification_sound"-->
+            <!--android:dependency="notifications_new_group"-->
+            <!--android:key="notifications_new_group_ringtone"-->
+            <!--android:ringtoneType="notification"-->
+            <!--android:title="@string/pref_title_ringtone" />&ndash;&gt;-->
+
+        <!--<Switch-->
+            <!--android:defaultValue="true"-->
+            <!--android:dependency="notifications_new_group"-->
+            <!--android:key="notifications_new_group_vibrate"-->
+            <!--android:title="Vibration" />-->
+
+        <!--<Switch-->
+            <!--android:defaultValue="true"-->
+            <!--android:dependency="notifications_new_group"-->
+            <!--android:key="notifications_new_group_led"-->
+            <!--android:title="LED light" />-->
+    <!--</Category>-->
+
+</android.support.constraint.ConstraintLayout>

@@ -11,56 +11,87 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Message Notifications"
+            android:paddingTop="15dp"
+            android:textColor="@color/applozic_theme_color"
+            android:textSize="16sp" />
 
         <Switch
             android:id="@+id/notifications_new_message"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:checked="false"
-            android:text="Notification sound on new message"
+            android:text="Notification sound"
             android:title="Notification sound"
-            tools:checked="true" />
+            tools:checked="true"
+            android:paddingBottom="25dp"
+            android:paddingTop="15dp"
+            android:textSize="17sp" />
 
         <Switch
             android:layout_height="match_parent"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:id="@+id/notifications_new_message_vibrate"
-            android:text="Vibrate on new message"
-            android:title="Vibration" />
+            android:text="Vibration"
+            android:title="Vibration"
+            android:paddingBottom="25dp"
+            android:textSize="17sp" />
 
         <Switch
             android:layout_height="match_parent"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:defaultValue="true"
             android:dependency="notifications_new_message"
             android:id="@+id/notifications_new_message_led"
-            android:text="Show LED notification on new message"
-            android:title="LED light" />
+            android:text="LED light"
+            android:title="LED light"
+            android:paddingBottom="25dp"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Group Notifications"
+            android:paddingTop="15dp"
+            android:textColor="@color/applozic_theme_color"
+            android:textSize="16sp" />
 
         <Switch
             android:layout_height="match_parent"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:id="@+id/notifications_new_group"
             android:title="Notification sound"
-            android:text="Notification sound on new group"
-            />
+            android:text="Notification sound"
+            android:paddingBottom="25dp"
+            android:paddingTop="15dp"
+            android:textSize="17sp" />
 
         <Switch
             android:layout_height="match_parent"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:id="@+id/notifications_new_group_vibrate"
-            android:text="Vibrate on new group"
-            android:title="Vibration" />
+            android:text="Vibration"
+            android:title="Vibration"
+            android:paddingBottom="25dp"
+            android:textSize="17sp" />
 
         <Switch
             android:layout_height="match_parent"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:defaultValue="true"
             android:dependency="notifications_new_message"
             android:id="@+id/notifications_new_group_led"
-            android:text="Show LED notification on new group"
-            android:title="LED light" />
+            android:text="LED light"
+            android:title="LED light"
+            android:paddingBottom="25dp"
+            android:textSize="17sp" />
 
 
     </LinearLayout>

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/HyperPlane.iml" filepath="$PROJECT_DIR$/HyperPlane.iml" />
       <module fileurl="file://$PROJECT_DIR$/Hyperplane.iml" filepath="$PROJECT_DIR$/Hyperplane.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mobicomkit/mobicomkit.iml" filepath="$PROJECT_DIR$/mobicomkit/mobicomkit.iml" />
       <module fileurl="file://$PROJECT_DIR$/mobicomkitui/mobicomkitui.iml" filepath="$PROJECT_DIR$/mobicomkitui/mobicomkitui.iml" />
